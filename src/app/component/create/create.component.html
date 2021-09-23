@@ -1,0 +1,39 @@
+<div>
+  <form [formGroup]="empForm" (ngSubmit)="saveHandle()">
+    <div class="mt-5">
+      <h3 *ngIf="!isEdit; else elseBlock">Create Employee</h3>
+      <ng-template #elseBlock>
+        <h3>Edit Employee</h3>
+      </ng-template>
+    </div>
+    <div class="p-fluid">
+      <label for="employeeName"  class="pt-2">Employee Name</label>
+      <input id="employeeName" pInputText [(ngModel)]="emp.empName"  formControlName="empName">
+      <small class="p-error" *ngIf="submitted && f.empName.errors?.required">*Employee Name is required*</small>
+    </div>
+    <div class="p-fluid">
+      <label for="designation" class="pt-2" >Designation</label>
+      <input id="designation" pInputText [(ngModel)]="emp.empDesignation" formControlName="empDesignation">
+      <small class="p-error" *ngIf="submitted && f.empDesignation.errors?.required">Designation is required*</small>
+    </div>
+    <div class="p-fluid">
+      <label for="address" class="pt-2">Address</label>
+      <input id="address" pInputText [(ngModel)]="emp.empAddress" formControlName="empAddress">
+      <small class="p-error" *ngIf="submitted && f.empAddress.errors?.required">Address is required*</small>
+    </div>
+    <div class="p-fluid">
+      <label for="salary" class="pt-2">Employee Salary</label>
+      <input id="salary" pInputText [(ngModel)]="emp.empSalary" formControlName="empSalary">
+      <small class="p-error" *ngIf="submitted && f.empSalary.errors?.required">Employee Salary is required*</small>
+    </div>
+    <div class="p-fluid">
+      <label for="date" class="pt-2">Joining Date</label>
+      <p-calendar id="date" dateFormat="dd/mm/yy" [showTime]="true" [(ngModel)]="valueDate" appendTo="body" formControlName="valueDate"></p-calendar>
+      <small class="p-error" *ngIf="submitted && f.valueDate.errors?.required">Joining Date is required*</small>
+    </div>
+    <div class="mt-3">
+      <button pButton class="mr-2" type="submit">Save</button>
+      <button pButton class="p-button-danger" (click)="hideDisplayCreate()">Back</button>
+    </div>
+  </form>
+</div>
